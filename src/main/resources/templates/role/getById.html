@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Role ID</title>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 30%;
+        }
+        td, th {
+          border: 2px solid #dddddd;
+          text-align: left;
+          padding: 3px;
+        }
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+</head>
+     <body>
+         <form action="/role/id" method="POST">
+             <label for="id">ID in format UUID:</label>
+             <input type="text" id="id" name="id">
+             <button type="submit">Find</button>
+         </form>
+         <table th:if="${role}">
+             <thead>
+             <tr>
+                 <td><b>Role id</b></td>
+                 <td><b>Name</b></td>
+             </tr>
+             </thead>
+             <tbody>
+             <tr>
+                 <td  th:text="${role.id}" ></td>
+                 <td  th:text="${role.name}" ></td>
+             </tr>
+             </tbody>
+         </table>
+     </body>
+</html>

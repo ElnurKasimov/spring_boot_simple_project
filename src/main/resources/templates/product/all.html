@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 50%;
+        }
+        td, th {
+          border: 2px solid #dddddd;
+          text-align: left;
+          padding: 3px;
+        }
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+</head>
+     <body>
+            <table th:if="${products}">
+                <thead>
+                    <tr>
+                        <td><b>Product id</b></td>
+                        <td><b>Name</b></td>
+                        <td><b>Price</b></td>
+                        <td><b>Manufacture</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  th:each="product : ${products}">
+                        <td  th:text="${product.id}" ></td>
+                        <td  th:text="${product.name}" ></td>
+                        <td  th:text="${product.price}" ></td>
+                        <td  th:text="${product.manufacture.name}" ></td>
+                    </tr>
+                </tbody>
+            </table>
+    </body>
+</html>

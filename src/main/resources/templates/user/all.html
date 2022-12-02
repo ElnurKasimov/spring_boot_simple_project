@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 50%;
+        }
+        td, th {
+          border: 2px solid #dddddd;
+          text-align: left;
+          padding: 3px;
+        }
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+</head>
+     <body>
+            <table th:if="${users}">
+                <thead>
+                    <tr>
+                        <td><b>User id</b></td>
+                        <td><b>Last Name</b></td>
+                        <td><b>First Name</b></td>
+                        <td><b>E mail</b></td>
+                        <td><b>Roles</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  th:each="user : ${users}">
+                        <td  th:text="${user.id}" ></td>
+                        <td  th:text="${user.lastName}" ></td>
+                        <td  th:text="${user.firstName}" ></td>
+                        <td  th:text="${user.email}" ></td>
+                        <td>
+                            <ul>
+                                <li th:each="role : ${user.roles}" th:text="${role.name}"></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </body>
+</html>

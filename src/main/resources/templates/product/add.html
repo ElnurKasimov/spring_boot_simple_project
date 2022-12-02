@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product add</title>
+</head>
+     <body>
+         <form action="/product/add" method="POST">
+             <label for="Name">Name:</label>
+             <input type="text" id="Name" name="name"><br>
+             <label for="price">Price:</label>
+             <input type="number" id="price" name="price"><br>
+             <label for = "manufactures">Select manufacture</label>
+             <select id="manufactures" name="manufactureName">
+                 <option th:each="manufacture : ${manufactures}" th:value="${manufacture.name}" th:text="${manufacture.name}"></option>
+             </select>
+             <button type="submit">Add</button>
+         </form>
+     </body>
+</html>

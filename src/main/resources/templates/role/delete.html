@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Role delete</title>
+</head>
+     <body>
+         <form action="/role/delete" method="POST">
+             <label for="id">ID in format UUID:</label>
+             <input type="text" id="id" name="id">
+             <button type="submit">Delete</button>
+         </form>
+     </body>
+</html>

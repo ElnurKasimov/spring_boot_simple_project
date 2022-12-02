@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User add</title>
+</head>
+     <body>
+         <form action="/user/add" method="POST">
+             <label for="lastName">Last Name:</label>
+             <input type="text" id="lastName" name="lastName"><br>
+             <label for="firstName">First Name:</label>
+             <input type="text" id="firstName" name="firstName"><br>
+             <label for="email">E-mail:</label>
+             <input type="email" id="email" name="email"><br>
+            <p>Select roles of the user:</p>
+             <th:block th:each="role : ${roles}">
+                 <input type="checkbox" name="rolesNames" th:value="${role.name}"/>
+                 <label th:text="${role.name}"></label><br>
+             </th:block><br>
+             <button type="submit">Add</button>
+         </form>
+     </body>
+</html>
