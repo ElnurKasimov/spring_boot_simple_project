@@ -19,8 +19,7 @@ public class User {
     public User() {}
 
    @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public UUID getId() {
+   public UUID getId() {
         return id;
     }
     public void setId(UUID id) {

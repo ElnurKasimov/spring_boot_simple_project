@@ -34,11 +34,10 @@ public class Product {
     }
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-
     public UUID getId() {
         return id;
     }
+
     @Column (name = "name")
     public String getName() {
         return name;

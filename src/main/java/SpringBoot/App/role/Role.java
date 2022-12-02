@@ -20,7 +20,6 @@ public class Role {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public UUID getId() {
         return id;
     }
