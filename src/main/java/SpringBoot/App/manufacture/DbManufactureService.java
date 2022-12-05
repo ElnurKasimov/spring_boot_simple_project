@@ -36,7 +36,11 @@ public class DbManufactureService implements ManufactureService{
 
     @Override
     public Manufacture save(ManufactureDto manufactureDto) {
-        return repository.save(ManufactureConverter.to(manufactureDto));
+        if (manufactureDto.getId() == null) {
+            manufactureDto.setId(UUID.randomUUID());
+        }
+        Manufacture toReturn = repository.save(ManufactureConverter.to(manufactureDto));
+        return toReturn;
     }
 
     @Override
