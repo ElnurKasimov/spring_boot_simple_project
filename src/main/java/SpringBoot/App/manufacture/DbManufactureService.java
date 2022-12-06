@@ -26,12 +26,13 @@ public class DbManufactureService implements ManufactureService{
 
     @Override
     public ManufactureDto getById(UUID id) {
-        return null;
+        return ManufactureConverter.from(repository.findById(id).orElse(null));
     }
 
     @Override
     public ManufactureDto getByName(String name) {
-        return null;
+
+        return ManufactureConverter.from(repository.;
     }
 
     @Override
@@ -39,8 +40,7 @@ public class DbManufactureService implements ManufactureService{
         if (manufactureDto.getId() == null) {
             manufactureDto.setId(UUID.randomUUID());
         }
-        Manufacture toReturn = repository.save(ManufactureConverter.to(manufactureDto));
-        return toReturn;
+        return repository.save(ManufactureConverter.to(manufactureDto));
     }
 
     @Override

@@ -2,7 +2,6 @@ package SpringBoot.App.manufacture;
 
 import SpringBoot.App.product.Product;
 import jakarta.persistence.*;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;

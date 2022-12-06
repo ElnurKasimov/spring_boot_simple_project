@@ -1,5 +1,7 @@
 package SpringBoot.App.product;
 
+import SpringBoot.App.manufacture.Manufacture;
+import SpringBoot.App.manufacture.dto.ManufactureConverter;
 import SpringBoot.App.product.dto.ProductConverter;
 import SpringBoot.App.product.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +38,9 @@ public class DbProductService implements ProductService{
 
     @Override
     public Product save(ProductDto productDto) {
+        if (productDto.getId() == null) {
+            productDto.setId(UUID.randomUUID());
+        }
         return repository.save(ProductConverter.to(productDto));
     }
 

@@ -1,5 +1,7 @@
 package SpringBoot.App.role;
 
+import SpringBoot.App.manufacture.Manufacture;
+import SpringBoot.App.manufacture.dto.ManufactureConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ public class DbRoleService implements RoleService{
 
     @Override
     public Role save(Role role) {
+        if (role.getId() == null) {
+            role.setId(UUID.randomUUID());
+        }
         return repository.save(role);
     }
 
