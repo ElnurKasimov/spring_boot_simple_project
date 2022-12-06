@@ -14,4 +14,8 @@ public interface ProductService {
     public Product save(ProductDto productDto);
 
     public ProductDto deleteById(UUID id);
+
+    public Set<ProductDto> getManufactureProductsById(UUID id);
+
+    public Set<ProductDto> getManufactureProductsByName(String name);
 }

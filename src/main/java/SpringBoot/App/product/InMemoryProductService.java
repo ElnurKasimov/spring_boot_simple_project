@@ -48,19 +48,24 @@ public class InMemoryProductService implements ProductService {
 
     }
 
-    public Set<ProductDto> getManufactureProductsByName(String name) {
-        return products.values()
-                .stream()
-                .map(ProductConverter::from)
-                .filter(pr -> pr.getManufacture().getName().equals(name))
-                .collect(Collectors.toSet());
-    }
 
+
+
+    @Override
     public Set<ProductDto> getManufactureProductsById(UUID id) {
         return products.values()
                 .stream()
                 .map(ProductConverter::from)
                 .filter(pr -> (pr.getManufacture().getId().equals(id)))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<ProductDto> getManufactureProductsByName(String name) {
+        return products.values()
+                .stream()
+                .map(ProductConverter::from)
+                .filter(pr -> pr.getManufacture().getName().equals(name))
                 .collect(Collectors.toSet());
     }
 

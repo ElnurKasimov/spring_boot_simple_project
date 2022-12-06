@@ -31,8 +31,7 @@ public class DbManufactureService implements ManufactureService{
 
     @Override
     public ManufactureDto getByName(String name) {
-
-        return ManufactureConverter.from(repository.;
+        return ManufactureConverter.from(repository.getByName(name));
     }
 
     @Override
@@ -45,6 +44,8 @@ public class DbManufactureService implements ManufactureService{
 
     @Override
     public ManufactureDto deleteById(UUID id) {
-        return null;
+        ManufactureDto toDelete = getById(id);
+        if(toDelete != null) {repository.deleteById(id);}
+        return toDelete;
     }
 }

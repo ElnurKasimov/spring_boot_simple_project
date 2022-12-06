@@ -28,12 +28,14 @@ public class DbProductService implements ProductService{
 
     @Override
     public ProductDto getById(UUID id) {
-        return null;
+
+        return ProductConverter.from(repository.findById(id).orElse(null));
     }
 
     @Override
     public ProductDto getByName(String name) {
-        return null;
+
+        return ProductConverter.from(repository.getByName(name));
     }
 
     @Override
@@ -46,6 +48,18 @@ public class DbProductService implements ProductService{
 
     @Override
     public ProductDto deleteById(UUID id) {
+        ProductDto toDelete = getById(id);
+        if(toDelete != null) {repository.deleteById(id);}
+        return toDelete;
+    }
+
+    @Override
+    public Set<ProductDto> getManufactureProductsById(UUID id) {
+        return null;
+    }
+
+    @Override
+    public Set<ProductDto> getManufactureProductsByName(String name) {
         return null;
     }
 }

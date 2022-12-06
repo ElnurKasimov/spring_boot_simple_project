@@ -1,6 +1,7 @@
 package SpringBoot.App.manufacture;
 
 import SpringBoot.App.manufacture.dto.ManufactureDto;
+import SpringBoot.App.product.dto.ProductDto;
 
 import java.util.Set;
 import java.util.UUID;
@@ -15,4 +16,5 @@ public interface ManufactureService {
     public Manufacture save(ManufactureDto manufactureDto);
 
     public ManufactureDto deleteById(UUID id);
+
 }
