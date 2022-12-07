@@ -67,6 +67,6 @@ public class DbProductService implements ProductService{
 
     @Override
     public void deleteManufactureProducts(UUID id) {
-        repository.deleteManufactureProducts(id.toString());
+        repository.deleteManufactureProducts(id);
     }
 }

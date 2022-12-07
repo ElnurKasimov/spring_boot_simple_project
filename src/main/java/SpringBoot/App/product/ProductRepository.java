@@ -17,7 +17,7 @@ public interface ProductRepository extends JpaRepository<Product, UUID>  {
     @Query("FROM Product p WHERE p.name LIKE :name")
     Product getByName(@Param("name") String name);
 
-    @Query (value = "SELECT * FROM product  p WHERE  p.manufacture_id :: text  = ':id' ",
+    @Query (value = "SELECT * FROM product  p WHERE  p.manufacture_id = ?1",
                     nativeQuery = true)
     Set<Product> getManufactureProductsById(@Param("id") UUID id);
 
@@ -29,6 +29,6 @@ public interface ProductRepository extends JpaRepository<Product, UUID>  {
 
     @Transactional
     @Modifying
-    @Query(nativeQuery = true, value = "DELETE FROM product WHERE manufacture_id::text = ':id' ")
-    void deleteManufactureProducts(@Param("id") String id);
+    @Query(nativeQuery = true, value = "DELETE FROM product WHERE manufacture_id = ?1")
+    void deleteManufactureProducts(@Param("id") UUID id);
 }
