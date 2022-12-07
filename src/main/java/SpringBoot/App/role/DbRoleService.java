@@ -6,9 +6,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Primary
 @RequiredArgsConstructor
@@ -18,7 +20,6 @@ public class DbRoleService implements RoleService{
 
     @Override
     public Set<Role> listAll() {
-
         return new HashSet<>(repository.findAll());
     }
 
@@ -32,21 +33,25 @@ public class DbRoleService implements RoleService{
 
     @Override
     public Role deleteById(UUID id) {
-        return null;
+        Role toDelete = getById(id);
+        if(toDelete != null) { repository.deleteById(id);}
+        return toDelete;
     }
 
     @Override
     public Role getByName(String name) {
-        return null;
+        return repository.getByName(name);
     }
 
     @Override
     public Role getById(UUID id) {
-        return null;
+        return repository.findById(id).orElse(null);
     }
 
     @Override
     public Set<Role> getRolesFromNames(String[] rolesNames) {
-        return null;
+        return Arrays.stream(rolesNames)
+                .map(this::getByName)
+                .collect(Collectors.toSet());
     }
 }

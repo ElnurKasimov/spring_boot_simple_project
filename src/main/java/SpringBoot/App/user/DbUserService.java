@@ -28,12 +28,12 @@ public class DbUserService implements UserService{
 
     @Override
     public UserDto getById(UUID id) {
-        return null;
+        return UserConverter.from(repository.findById(id).orElse(null));
     }
 
     @Override
     public UserDto getByName(String lastName, String firstName) {
-        return null;
+        return UserConverter.from(repository.getByName(lastName,firstName));
     }
 
     @Override
@@ -46,6 +46,8 @@ public class DbUserService implements UserService{
 
     @Override
     public UserDto deleteById(UUID id) {
-        return null;
+        UserDto toDelete = getById(id);
+        if(toDelete != null) { repository.deleteById(id);}
+        return toDelete;
     }
 }
