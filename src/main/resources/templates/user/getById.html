@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User ID</title>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 30%;
+        }
+        td, th {
+          border: 2px solid #dddddd;
+          text-align: left;
+          padding: 3px;
+        }
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+</head>
+     <body>
+         <form action="/user/id" method="POST">
+             <label for="id">ID in format UUID:</label>
+             <input type="text" id="id" name="id">
+             <button type="submit">Find</button>
+         </form>
+         <table th:if="${user}">
+             <thead>
+             <tr>
+                 <td><b>User id</b></td>
+                 <td><b>Last Name</b></td>
+                 <td><b>First Name</b></td>
+                 <td><b>E-mail</b></td>
+             </tr>
+             </thead>
+             <tbody>
+             <tr>
+                 <td  th:text="${user.id}" ></td>
+                 <td  th:text="${user.lastName}" ></td>
+                 <td  th:text="${user.firstName}" ></td>
+                 <td  th:text="${user.email}" ></td>
+             </tr>
+             </tbody>
+         </table>
+     </body>
+</html>

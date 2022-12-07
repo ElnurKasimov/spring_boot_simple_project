@@ -58,11 +58,10 @@ public class DbProductService implements ProductService{
 
     @Override
     public Set<ProductDto> getManufactureProductsByName(String name) {
-        Set<Product> result = repository.getManufactureProductsByName(name);
-        for ( Product product : result) {
-            System.out.println("product = " + product);
-        }
-            return result.stream().map(ProductConverter::from).collect(Collectors.toSet());
+        return repository.getManufactureProductsByName(name)
+           .stream()
+           .map(ProductConverter::from)
+           .collect(Collectors.toSet());
     }
 
     @Override

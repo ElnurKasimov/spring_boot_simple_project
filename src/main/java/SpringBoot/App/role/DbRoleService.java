@@ -2,6 +2,7 @@ package SpringBoot.App.role;
 
 import SpringBoot.App.manufacture.Manufacture;
 import SpringBoot.App.manufacture.dto.ManufactureConverter;
+import SpringBoot.App.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class DbRoleService implements RoleService{
     private  final RoleRepository repository;
+    private final UserRepository userRepository;
 
     @Override
     public Set<Role> listAll() {
@@ -34,7 +36,9 @@ public class DbRoleService implements RoleService{
     @Override
     public Role deleteById(UUID id) {
         Role toDelete = getById(id);
-        if(toDelete != null) { repository.deleteById(id);}
+        if(toDelete != null) {
+            userRepository.deleteRoleFromUsers(id);
+            repository.deleteById(id);}
         return toDelete;
     }
 
