@@ -48,9 +48,6 @@ public class InMemoryProductService implements ProductService {
 
     }
 
-
-
-
     @Override
     public Set<ProductDto> getManufactureProductsById(UUID id) {
         return products.values()

@@ -17,22 +17,6 @@ public class Product {
 
     public Product() {};
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(long price) {
-        this.price = price;
-    }
-
-    public void setManufacture(Manufacture manufacture) {
-        this.manufacture = manufacture;
-    }
-
     @Id
     public UUID getId() {
         return id;
@@ -54,7 +38,21 @@ public class Product {
         return manufacture;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
+    public void setManufacture(Manufacture manufacture) {
+        this.manufacture = manufacture;
+    }
     @Override
     public String toString() {
         return "Product{" +

@@ -18,4 +18,6 @@ public interface ProductService {
     public Set<ProductDto> getManufactureProductsById(UUID id);
 
     public Set<ProductDto> getManufactureProductsByName(String name);
+
+    public void deleteManufactureProducts(UUID id);
 }

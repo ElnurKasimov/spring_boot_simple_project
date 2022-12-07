@@ -28,13 +28,11 @@ public class DbProductService implements ProductService{
 
     @Override
     public ProductDto getById(UUID id) {
-
         return ProductConverter.from(repository.findById(id).orElse(null));
     }
 
     @Override
     public ProductDto getByName(String name) {
-
         return ProductConverter.from(repository.getByName(name));
     }
 
@@ -55,11 +53,20 @@ public class DbProductService implements ProductService{
 
     @Override
     public Set<ProductDto> getManufactureProductsById(UUID id) {
-        return null;
+        return repository.getManufactureProductsById(id).stream().map(ProductConverter::from).collect(Collectors.toSet());
     }
 
     @Override
     public Set<ProductDto> getManufactureProductsByName(String name) {
-        return null;
+        Set<Product> result = repository.getManufactureProductsByName(name);
+        for ( Product product : result) {
+            System.out.println("product = " + product);
+        }
+            return result.stream().map(ProductConverter::from).collect(Collectors.toSet());
+    }
+
+    @Override
+    public void deleteManufactureProducts(UUID id) {
+        repository.deleteManufactureProducts(id.toString());
     }
 }

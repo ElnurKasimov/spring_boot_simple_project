@@ -2,6 +2,7 @@ package SpringBoot.App.manufacture;
 
 import SpringBoot.App.manufacture.dto.ManufactureDto;
 import SpringBoot.App.product.InMemoryProductService;
+import SpringBoot.App.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ import java.util.UUID;
 @RequestMapping("/manufacture")
 public class ManufactureController {
     private final ManufactureService manufactureService;
-    private final InMemoryProductService inMemoryProductService;
+    private final ProductService productService;
 
     @GetMapping("/all")
     public ModelAndView getSetOfProducts() {
@@ -35,7 +36,7 @@ public class ManufactureController {
     public ModelAndView getManufactureById(@RequestParam(name = "id") String id) {
         ModelAndView result = new ModelAndView("manufacture/getById");
         result.addObject("manufacture", manufactureService.getById(UUID.fromString(id)));
-        result.addObject("manufactureProducts", inMemoryProductService.getManufactureProductsById(UUID.fromString(id)));
+        result.addObject("manufactureProducts", productService.getManufactureProductsById(UUID.fromString(id)));
         return result;
     }
 
@@ -48,7 +49,7 @@ public class ManufactureController {
     public ModelAndView getManufactureByName(@RequestParam(name = "name") String name) {
         ModelAndView result = new ModelAndView("manufacture/getByName");
         result.addObject("manufacture", manufactureService.getByName(name));
-        result.addObject("manufactureProducts", inMemoryProductService.getManufactureProductsByName(name));
+        result.addObject("manufactureProducts", productService.getManufactureProductsByName(name));
         return result;
     }
 
@@ -77,7 +78,7 @@ public class ManufactureController {
     @PostMapping("/delete")
     public String postDeleteById(@RequestParam ("id") String id) {
         if(manufactureService.getById(UUID.fromString(id)) != null) {
-            inMemoryProductService.deleteManufactureProducts(UUID.fromString(id));
+            productService.deleteManufactureProducts(UUID.fromString(id));
             manufactureService.deleteById(UUID.fromString(id));
             return "redirect:/manufacture/all";}
         else {return "redirect:/error";}
