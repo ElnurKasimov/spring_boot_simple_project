@@ -1,13 +1,11 @@
 package SpringBoot.App.manufacture;
 
 import SpringBoot.App.product.Product;
-import jakarta.persistence.*;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 

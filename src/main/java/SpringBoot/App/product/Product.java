@@ -1,9 +1,9 @@
 package SpringBoot.App.product;
 
 import SpringBoot.App.manufacture.Manufacture;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -22,7 +22,7 @@ public class Product {
         return id;
     }
 
-    @Column (name = "name")
+    @Column(name = "name")
     public String getName() {
         return name;
     }

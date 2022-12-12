@@ -1,13 +1,12 @@
 package SpringBoot.App.user;
 
 import SpringBoot.App.role.Role;
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table (name = "\"user\"")
+@Table(name = "\"user\"")
 public class User {
     private UUID id;
     private String lastName;
@@ -26,7 +25,7 @@ public class User {
         this.id = id;
     }
 
-    @Column (name = "lastName")
+    @Column(name = "lastName")
     public String getLastName() {
         return lastName;
     }

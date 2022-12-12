@@ -27,24 +27,22 @@ public class WebSecurityConfig {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http.csrf().disable()
                     .authorizeHttpRequests()
-                    .antMatchers("/login").permitAll()
                     .anyRequest()
                     .authenticated()
                     .and()
                     .formLogin()
-                    .loginPage("/login")
-                    .loginProcessingUrl("/login")
-                    .defaultSuccessUrl("/homepage.html", false)
-                    .failureUrl("/login.html?error=true")
+                    .permitAll()
+//                    .loginPage("/login")
+//                    .loginProcessingUrl("/login")
+//                    .defaultSuccessUrl("/homepage.html", false)
+//                    .failureUrl("/login.html?error=true")
                     .and()
                     .logout()
-                    .logoutUrl("/logout")
+                    .permitAll()
+//                    .logoutUrl("/logout")
                     .deleteCookies("JSESSIONID");
-
             return http.build();
-
         }
-
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -54,14 +52,12 @@ public class WebSecurityConfig {
                         .password("user")
                         .roles("USER")
                         .build();
-
         UserDetails admin =
                 User.withDefaultPasswordEncoder()
                         .username("admin")
                         .password("admin")
                         .roles("ADMIN")
                         .build();
-
         return new InMemoryUserDetailsManager(user, admin);
     }
 

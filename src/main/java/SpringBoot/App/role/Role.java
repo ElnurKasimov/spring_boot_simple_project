@@ -1,8 +1,7 @@
 package SpringBoot.App.role;
 
 import SpringBoot.App.user.User;
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
@@ -38,7 +37,7 @@ public class Role {
         this.name = name;
     }
 
-    @ManyToMany (mappedBy = "roles", cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "roles", cascade = CascadeType.PERSIST)
     public Set<User> getUsers() {
         return users;
     }
