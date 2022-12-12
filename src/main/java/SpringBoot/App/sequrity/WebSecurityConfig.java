@@ -1,26 +1,27 @@
 package SpringBoot.App.sequrity;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-public class WebSequrityConfig {
-
-
-    @Configuration
-    @EnableWebSecurity
-    @EnableGlobalMethodSecurity(
-            prePostEnabled = true,
-            securedEnabled = true,
-            jsr250Enabled = true)
-    public class WebSecurityConfig {
-
+@RequiredArgsConstructor
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(
+        prePostEnabled = true,
+        securedEnabled = true,
+        jsr250Enabled = true)
+public class WebSecurityConfig {
+    private final NamedParameterJdbcTemplate jdbcTemplate;
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -60,7 +61,6 @@ public class WebSequrityConfig {
                         .password("admin")
                         .roles("ADMIN")
                         .build();
-
 
         return new InMemoryUserDetailsManager(user, admin);
     }
