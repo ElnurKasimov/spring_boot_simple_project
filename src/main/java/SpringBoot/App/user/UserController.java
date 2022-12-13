@@ -3,6 +3,9 @@ package SpringBoot.App.user;
 import SpringBoot.App.role.RoleService;
 import SpringBoot.App.user.dto.UserDto;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +21,7 @@ import java.util.UUID;
 public class UserController {
     private final UserService userService;
     private final RoleService roleService;
+    private final PasswordEncoder encoder;
 
     @GetMapping("/all")
     public ModelAndView getSetOfUsers() {
@@ -66,14 +70,15 @@ public class UserController {
             @RequestParam(name = "password") String password,
             @RequestParam(value = "rolesNames") String[] rolesNames )  {
 
-        UserDto userDto = new UserDto(lastName, firstName, email, roleService.getRolesFromNames(rolesNames));
+        UserDto userDto = new UserDto(lastName, firstName, email,
+                encoder.encode(password), roleService.getRolesFromNames(rolesNames));
         userService.save(userDto);
         return "redirect:/user/all";
     }
 
     @GetMapping("/update")
     public ModelAndView getUpdateUser() {
-        ModelAndView result = new ModelAndView("user/add");
+        ModelAndView result = new ModelAndView("user/update");
         result.addObject("roles", roleService.listAll());
         return  result;
     }
@@ -83,9 +88,11 @@ public class UserController {
             @RequestParam(name = "lastName") String lastName,
             @RequestParam(name = "firstName") String firstName,
             @RequestParam(name = "email") String email,
+            @RequestParam(name = "password") String password,
             @RequestParam(value = "rolesNames") String[] rolesNames )  {
 
-        UserDto userDto = new UserDto(UUID.fromString(id),lastName, firstName, email, roleService.getRolesFromNames(rolesNames));
+        UserDto userDto = new UserDto(UUID.fromString(id),lastName, firstName, email,
+                encoder.encode(password), roleService.getRolesFromNames(rolesNames));
         userService.save(userDto);
         return "redirect:/user/all";
     }

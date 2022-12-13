@@ -1,10 +1,12 @@
 package SpringBoot.App.user.dto;
 import SpringBoot.App.role.Role;
+import lombok.AllArgsConstructor;
 
 import java.util.Set;
 import java.util.UUID;
 
 
+@AllArgsConstructor
 public class UserDto {
     private UUID id;
     private String lastName;
@@ -15,10 +17,11 @@ public class UserDto {
 
     public UserDto() {}
 
-    public UserDto ( String lastName, String firstName, String email,  Set<Role> roles) {
+    public UserDto(String lastName, String firstName,  String email,  String password,  Set<Role> roles) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
+        this.password = password;
         this.roles = roles;
     }
 
