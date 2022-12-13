@@ -74,16 +74,13 @@ public class ProductController {
     }
     @PostMapping("/update")
     public String postUpdateProduct(
+            @RequestParam ("id") String id,
             @RequestParam ("name") String name,
             @RequestParam ("price") long price,
             @RequestParam ("manufactureName") String manufactureName) {
-        ProductDto forUpdateDto = productService.getByName(name);
-        if(forUpdateDto != null) {
-            forUpdateDto.setPrice(price);
-            forUpdateDto.setManufacture(manufactureService.getByName(manufactureName));
-            productService.save(forUpdateDto);
-        return "redirect:/product/all";}
-        else {return "redirect:/error";}
+        ProductDto forUpdateDto = new ProductDto(UUID.fromString(id), name, price,manufactureService.getByName(manufactureName));
+        productService.save(forUpdateDto);
+        return "redirect:/product/all";
     }
 
     @GetMapping("/delete")

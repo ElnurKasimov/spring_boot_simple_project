@@ -53,7 +53,7 @@ public class UserController {
     }
 
     @GetMapping("/add")
-    public ModelAndView getAddProduct() {
+    public ModelAndView getAddUser() {
         ModelAndView result = new ModelAndView("user/add");
         result.addObject("roles", roleService.listAll());
         return  result;
@@ -63,9 +63,29 @@ public class UserController {
             @RequestParam(name = "lastName") String lastName,
             @RequestParam(name = "firstName") String firstName,
             @RequestParam(name = "email") String email,
+            @RequestParam(name = "password") String password,
             @RequestParam(value = "rolesNames") String[] rolesNames )  {
 
         UserDto userDto = new UserDto(lastName, firstName, email, roleService.getRolesFromNames(rolesNames));
+        userService.save(userDto);
+        return "redirect:/user/all";
+    }
+
+    @GetMapping("/update")
+    public ModelAndView getUpdateUser() {
+        ModelAndView result = new ModelAndView("user/add");
+        result.addObject("roles", roleService.listAll());
+        return  result;
+    }
+    @PostMapping("/update")
+    public String postUpdateUser(
+            @RequestParam(name = "id") String id,
+            @RequestParam(name = "lastName") String lastName,
+            @RequestParam(name = "firstName") String firstName,
+            @RequestParam(name = "email") String email,
+            @RequestParam(value = "rolesNames") String[] rolesNames )  {
+
+        UserDto userDto = new UserDto(UUID.fromString(id),lastName, firstName, email, roleService.getRolesFromNames(rolesNames));
         userService.save(userDto);
         return "redirect:/user/all";
     }

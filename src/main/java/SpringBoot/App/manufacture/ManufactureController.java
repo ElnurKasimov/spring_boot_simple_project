@@ -55,12 +55,27 @@ public class ManufactureController {
 
     @GetMapping("/add")
     public String getAddManufacture() {
-        ModelAndView result = new ModelAndView("manufacture/add");
+        //ModelAndView result = new ModelAndView("manufacture/add");
         return "/manufacture/add";
     }
     @PostMapping("/add")
     public String postAddManufacture(@RequestParam ("name") String name) {
         ManufactureDto manufactureDto = new ManufactureDto(name);
+        manufactureService.save(manufactureDto);
+        return "redirect:/manufacture/all";
+    }
+
+    @GetMapping("/update")
+    public String getUpdateManufacture() {
+        //odelAndView result = new ModelAndView("manufacture/add");
+        return "/manufacture/update";
+    }
+    @PostMapping("/update")
+    public String postUpdateManufacture(
+            @RequestParam ("id") String id,
+            @RequestParam ("name") String name
+            ) {
+        ManufactureDto manufactureDto = new ManufactureDto(UUID.fromString(id),name);
         manufactureService.save(manufactureDto);
         return "redirect:/manufacture/all";
     }

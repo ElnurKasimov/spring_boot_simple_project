@@ -1,9 +1,12 @@
 package SpringBoot.App.role;
 
 import SpringBoot.App.user.User;
+import lombok.AllArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
+
 
 @Entity
 @Table(name = "role")

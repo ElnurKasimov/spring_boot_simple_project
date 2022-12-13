@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manufacture update</title>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 50%;
+        }
+        td, th {
+          border: 2px solid #dddddd;
+          text-align: left;
+          padding: 3px;
+        }
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+</head>
+     <body>
+         <form action="/manufacture/update" method="POST">
+             <label for="id">ID in UUID format</label>
+             <input type="text" id="id" name="id"><br>
+             <label for="name">Name</label>
+             <input type="text" id="name" name="name"><br>
+             <button type="submit">Update</button>
+         </form>
+     </body>
+</html>
