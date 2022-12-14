@@ -32,14 +32,14 @@ public class WebSecurityConfig {
                     .and()
                     .formLogin()
                     .permitAll()
-//                    .loginPage("/login")
-//                    .loginProcessingUrl("/login")
-//                    .defaultSuccessUrl("/homepage.html", false)
-//                    .failureUrl("/login.html?error=true")
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login")
+                    .defaultSuccessUrl("/homepage.html", false)
+                    .failureUrl("/login.html?error=true")
                     .and()
                     .logout()
                     .permitAll()
-//                    .logoutUrl("/logout")
+                    .logoutUrl("/logout")
                     .deleteCookies("JSESSIONID");
             return http.build();
         }

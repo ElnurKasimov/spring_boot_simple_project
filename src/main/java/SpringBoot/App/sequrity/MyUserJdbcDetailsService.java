@@ -23,7 +23,7 @@ public class MyUserJdbcDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         List<RoleUser> userDataLines = jdbcTemplate.query(
-                "SELECT last_name, first_name, password, name FROM role r " +
+                "SELECT last_name, first_name, email, password, name FROM role r " +
                         "JOIN role_user ru ON r.id = ru.role_id " +
                         "JOIN \"user\" u ON u.id = ru.user_id " +
                         "WHERE email = :email",
