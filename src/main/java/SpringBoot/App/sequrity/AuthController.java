@@ -1,8 +1,11 @@
 package SpringBoot.App.sequrity;
 
+import SpringBoot.App.product.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 @Controller
@@ -11,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
         @GetMapping("/login")
         public String login() {
-            return "/login";
+            return "/security/login";
         }
 
     @GetMapping("/homepage")
@@ -19,15 +22,30 @@ import org.springframework.web.servlet.ModelAndView;
         return "/homepage";
     }
 
-    @GetMapping("/auth")
-    public String auth() {
-        return authService.isRegistered() ? "/login/error" : "/registration";
+//    @GetMapping("/auth")
+//    public ModelAndView auth() {
+//            if(authService.isRegistered()) { return new ModelAndView("security/login-error");}
+//            else { return new ModelAndView("security/registration");}
+//    }
+//
+//    @GetMapping("/login-error")
+//    public String loginError() {
+//        return "/security/login-error";
+//    }
+
+    @GetMapping("/registration")
+    public String getRegistration() {
+        return "/security/registration";
     }
 
-    @GetMapping("/login/error")
-    public String loginError() {
-        return "/login/error";
+    @PostMapping("/registration")
+    public String postRegistration(
+            @RequestParam("lastName") String lastName,
+            @RequestParam ("firstName") String firstName,
+            @RequestParam ("email") String email,
+            @RequestParam ("password") String password) {
+        authService.save(lastName, firstName, email, password);
+        return "redirect:/login";
     }
-
 
 }

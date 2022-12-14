@@ -30,19 +30,19 @@ public class MyAuthenticationFailureHandler
             throws IOException, ServletException {
 
         Map<String, Object> data = new HashMap<>();
-        String result = authService.checkCredentials(request.getParameter("username"), request.getParameter("password"));
-
-        switch(result) {
-            case "unknown User":
-                data.put("unknown User", "Please carry out registration in /registration");
-                break;
-            case "wrong Password" :
-                data.put("wrong Password", "Please enter correct one");
-                break;
-            default:
-                data.put("exception", exception.getMessage());
-
-        }
+//        String result = authService.checkCredentials(request.getParameter("username"), request.getParameter("password"));
+//
+//        switch(result) {
+//            case "unknown User":
+//                data.put("unknown User", "Please carry out registration in /registration");
+//                break;
+//            case "wrong Password" :
+//                data.put("wrong Password", "Please enter correct one");
+//                break;
+//            default:
+//                data.put("exception", exception.getMessage());
+//
+//        }
 
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
 

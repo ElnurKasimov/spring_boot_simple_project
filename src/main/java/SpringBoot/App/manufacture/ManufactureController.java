@@ -67,7 +67,7 @@ public class ManufactureController {
 
     @GetMapping("/update")
     public String getUpdateManufacture() {
-        //odelAndView result = new ModelAndView("manufacture/add");
+        //ModelAndView result = new ModelAndView("manufacture/add");
         return "/manufacture/update";
     }
     @PostMapping("/update")

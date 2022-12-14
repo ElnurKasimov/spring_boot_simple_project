@@ -28,6 +28,9 @@ public class WebSecurityConfig {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http.csrf().disable()
                     .authorizeHttpRequests()
+                    .antMatchers("/login/**").permitAll()
+                    .antMatchers("/registration").permitAll()
+                    .antMatchers("/auth").permitAll()
                     .anyRequest()
                     .authenticated()
                     .and()
@@ -36,7 +39,7 @@ public class WebSecurityConfig {
                     .loginPage("/login")
                     .loginProcessingUrl("/login")
                     .defaultSuccessUrl("/homepage", true)
-                    .failureUrl("/auth")
+                    .failureUrl("/registration")
                     //.failureHandler(authenticationFailureHandler())
                     .and()
                     .logout()

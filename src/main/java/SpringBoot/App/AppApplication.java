@@ -13,7 +13,7 @@ public class AppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AppApplication.class, args);
-//
+
 //		BCryptPasswordEncoder coder = new BCryptPasswordEncoder();
 //		String ivan = coder.encode("ivan");
 //		String petr = coder.encode("petr");
