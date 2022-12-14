@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 @RequiredArgsConstructor
 @Configuration
@@ -34,8 +35,9 @@ public class WebSecurityConfig {
                     .permitAll()
                     .loginPage("/login")
                     .loginProcessingUrl("/login")
-                    .defaultSuccessUrl("/homepage.html", false)
-                    .failureUrl("/login.html?error=true")
+                    .defaultSuccessUrl("/homepage", true)
+                    .failureUrl("/auth")
+                    //.failureHandler(authenticationFailureHandler())
                     .and()
                     .logout()
                     .permitAll()
@@ -49,6 +51,10 @@ public class WebSecurityConfig {
         return new MyUserJdbcDetailsService(jdbcTemplate);
     }
 
+    @Bean
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new MyAuthenticationFailureHandler();
+    }
 
 //    @Bean
 //    public UserDetailsService userDetailsService() {
