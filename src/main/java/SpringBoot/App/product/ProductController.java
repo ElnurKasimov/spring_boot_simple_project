@@ -3,6 +3,7 @@ package SpringBoot.App.product;
 import SpringBoot.App.manufacture.ManufactureService;
 import SpringBoot.App.product.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,12 +51,14 @@ public class ProductController {
         return result;
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/add")
     public ModelAndView getAddProduct() {
         ModelAndView result = new ModelAndView("product/add");
         result.addObject("manufactures", manufactureService.listAll());
         return  result;
     }
+    @Secured("ROLE_ADMIN")
     @PostMapping("/add")
     public String postAddProduct(
             @RequestParam ("name") String name,
@@ -66,12 +69,14 @@ public class ProductController {
         return "redirect:/product/all";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/update")
     public ModelAndView getUpdateProduct() {
         ModelAndView result = new ModelAndView("product/update");
         result.addObject("manufactures", manufactureService.listAll());
         return  result;
     }
+    @Secured("ROLE_ADMIN")
     @PostMapping("/update")
     public String postUpdateProduct(
             @RequestParam ("id") String id,
@@ -83,9 +88,11 @@ public class ProductController {
         return "redirect:/product/all";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/delete")
     public String getDeleteProduct() {return "/product/delete";
     }
+    @Secured("ROLE_ADMIN")
     @PostMapping("/delete")
     public String postDeleteById(@RequestParam ("id") String id) {
         if(productService.getById(UUID.fromString(id)) != null) {
@@ -93,7 +100,7 @@ public class ProductController {
             return "redirect:/product/all";}
         else {return "redirect:/error";}
     }
-    @GetMapping("/error")
-    public String getErrorPage () {return "redirect:/error";}
+//    @GetMapping("/error")
+//    public String getErrorPage () {return "redirect:/error";}
 
 }

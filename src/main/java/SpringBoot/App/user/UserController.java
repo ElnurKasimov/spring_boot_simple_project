@@ -4,6 +4,7 @@ import SpringBoot.App.role.RoleService;
 import SpringBoot.App.user.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ public class UserController {
     private final RoleService roleService;
     private final PasswordEncoder encoder;
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/all")
     public ModelAndView getSetOfUsers() {
         ModelAndView result = new ModelAndView("user/all");
@@ -30,11 +32,13 @@ public class UserController {
         return  result;
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/id")
     public String getUserById() {
         return "/user/getById";
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/id")
     public ModelAndView getManufactureById(@RequestParam(name = "id") String id) {
         ModelAndView result = new ModelAndView("user/getById");
@@ -42,11 +46,13 @@ public class UserController {
         return result;
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/name")
     public String getManufactureByName() {
         return "/user/getByName";
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/name")
     public ModelAndView getUserByName(
             @RequestParam(name = "lastName") String lastName,
@@ -56,12 +62,15 @@ public class UserController {
         return result;
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/add")
     public ModelAndView getAddUser() {
         ModelAndView result = new ModelAndView("user/add");
         result.addObject("roles", roleService.listAll());
         return  result;
     }
+
+    @Secured("ROLE_ADMIN")
     @PostMapping("/add")
     public String postAddUser(
             @RequestParam(name = "lastName") String lastName,
@@ -76,12 +85,14 @@ public class UserController {
         return "redirect:/user/all";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/update")
     public ModelAndView getUpdateUser() {
         ModelAndView result = new ModelAndView("user/update");
         result.addObject("roles", roleService.listAll());
         return  result;
     }
+    @Secured("ROLE_ADMIN")
     @PostMapping("/update")
     public String postUpdateUser(
             @RequestParam(name = "id") String id,
@@ -97,16 +108,18 @@ public class UserController {
         return "redirect:/user/all";
     }
 
-    @GetMapping("/error")
-    public String getErrorPage () {
-        return "/error";
-    }
+//    @GetMapping("/error")
+//    public String getErrorPage () {
+//        return "/error";
+//    }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/delete")
     public String getDeleteUserById() {
         return "/user/delete";
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/delete")
     public String postDeleteUserById(@RequestParam ("id") String id) {
         if(userService.getById(UUID.fromString(id)) != null) {

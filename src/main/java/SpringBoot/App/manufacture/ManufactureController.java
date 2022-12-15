@@ -4,6 +4,7 @@ import SpringBoot.App.manufacture.dto.ManufactureDto;
 import SpringBoot.App.product.InMemoryProductService;
 import SpringBoot.App.product.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,11 +54,13 @@ public class ManufactureController {
         return result;
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/add")
     public String getAddManufacture() {
         //ModelAndView result = new ModelAndView("manufacture/add");
         return "/manufacture/add";
     }
+    @Secured("ROLE_ADMIN")
     @PostMapping("/add")
     public String postAddManufacture(@RequestParam ("name") String name) {
         ManufactureDto manufactureDto = new ManufactureDto(name);
@@ -65,11 +68,13 @@ public class ManufactureController {
         return "redirect:/manufacture/all";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/update")
     public String getUpdateManufacture() {
         //ModelAndView result = new ModelAndView("manufacture/add");
         return "/manufacture/update";
     }
+    @Secured("ROLE_ADMIN")
     @PostMapping("/update")
     public String postUpdateManufacture(
             @RequestParam ("id") String id,
@@ -80,16 +85,18 @@ public class ManufactureController {
         return "redirect:/manufacture/all";
     }
 
-    @GetMapping("/error")
-    public String getErrorPage () {
-        return "redirect:/error";
-    }
+//    @GetMapping("/error")
+//    public String getErrorPage () {
+//        return "redirect:/error";
+//    }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/delete")
     public String getDeleteManufacture() {
         return "/manufacture/delete";
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/delete")
     public String postDeleteById(@RequestParam ("id") String id) {
         if(manufactureService.getById(UUID.fromString(id)) != null) {

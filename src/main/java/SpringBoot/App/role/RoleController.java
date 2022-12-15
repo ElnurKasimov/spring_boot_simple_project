@@ -2,6 +2,7 @@ package SpringBoot.App.role;
 
 import SpringBoot.App.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ public class RoleController {
     private final UserService userService;
     private final RoleService roleService;
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/all")
     public ModelAndView getSetOfRoles() {
         ModelAndView result = new ModelAndView("role/all");
@@ -25,9 +27,11 @@ public class RoleController {
         return  result;
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/id")
     public String getRoleById() {return "/role/getById";}
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/id")
     public ModelAndView postGetRoleById(@RequestParam(name = "id") String id) {
         ModelAndView result = new ModelAndView("role/getById");
@@ -35,20 +39,22 @@ public class RoleController {
         return result;
     }
 
-
+    @Secured("ROLE_ADMIN")
     @GetMapping("/name")
     public String getRoleByName() {return "/role/getByName";}
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/name")
     public ModelAndView postGetRoleByName(@RequestParam(name = "name") String name) {
         ModelAndView result = new ModelAndView("role/getByName");
         result.addObject("role", roleService.getByName(name));
         return result;
     }
-
+    @Secured("ROLE_ADMIN")
     @GetMapping("/add")
     public String getAddRole() {return "/role/add";}
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/add")
     public String postAddRole(@RequestParam(name = "name") String name )  {
         Role role = new Role(name);
@@ -56,16 +62,18 @@ public class RoleController {
         return "redirect:/role/all";
     }
 
-    @GetMapping("/error")
-    public String getErrorPage () {
-        return "/error";
-    }
+//    @GetMapping("/error")
+//    public String getErrorPage () {
+//        return "/error";
+//    }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/delete")
     public String getDeleteRoleById() {
         return "/role/delete";
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/delete")
     public String postDeleteRoleById(@RequestParam ("id") String id) {
         if(roleService.getById(UUID.fromString(id)) != null) {

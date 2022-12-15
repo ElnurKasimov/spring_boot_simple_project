@@ -5,6 +5,7 @@ import SpringBoot.App.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -81,6 +84,38 @@ public class AuthService {
             user.setPassword(rs.getString("password"));
             return user;
         }
+    }
+
+
+    public SecurityResponse getSecurityResponse() {
+        Set<String> roles = getUserRoles();
+
+        roles.forEach(System.out::println);
+
+        if (roles.contains("ADMIN")) {
+            return new SecurityResponse("You're admin! Cool!");
+        }
+
+        if (roles.contains("USER")) {
+            return new SecurityResponse("You're user! That's okay!");
+        }
+
+        if (roles.contains("ANONYMOUS")) {
+            return new SecurityResponse("You're anonymous.");
+        }
+
+        return new SecurityResponse("Who are you? who knows.");
+    }
+
+    private Set<String> getUserRoles() {
+        return SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .map(it -> it.replace("ROLE_", ""))
+                .collect(Collectors.toSet());
     }
 
 }
