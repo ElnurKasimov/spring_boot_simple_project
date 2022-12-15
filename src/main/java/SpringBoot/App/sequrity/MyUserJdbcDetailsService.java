@@ -40,17 +40,22 @@ public class MyUserJdbcDetailsService implements UserDetailsService {
         else return new UserDetails() {
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
+                roles.forEach(System.out::println);
                 return roles;
             }
 
             @Override
             public String getPassword() {
-                return userDataLines.get(0).getPassword();
+                String password = userDataLines.get(0).getPassword();
+                System.out.println("password = " + password);
+                return password;
             }
 
             @Override
             public String getUsername() {
-                return userDataLines.get(0).getEmail();
+                String email1 = userDataLines.get(0).getEmail();
+                System.out.println("email = " + email);
+                return email;
             }
 
             @Override
