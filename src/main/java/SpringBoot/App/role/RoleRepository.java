@@ -13,4 +13,7 @@ public interface RoleRepository extends JpaRepository<Role, UUID> {
     @Query("FROM Role r WHERE r.name LIKE :name")
     Role getByName(@Param("name") String name);
 
+    @Query("SELECT r.id FROM Role r WHERE r.name LIKE :name")
+    UUID getIdByName(@Param("name") String name);
+
 }

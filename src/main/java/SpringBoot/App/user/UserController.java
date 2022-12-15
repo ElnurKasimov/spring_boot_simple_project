@@ -72,7 +72,7 @@ public class UserController {
 
         UserDto userDto = new UserDto(lastName, firstName, email,
                 encoder.encode(password), roleService.getRolesFromNames(rolesNames));
-        userService.save(userDto);
+        User user = userService.save(userDto);
         return "redirect:/user/all";
     }
 

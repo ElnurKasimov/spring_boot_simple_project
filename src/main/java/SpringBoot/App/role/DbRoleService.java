@@ -58,4 +58,9 @@ public class DbRoleService implements RoleService{
                 .map(this::getByName)
                 .collect(Collectors.toSet());
     }
+
+    @Override
+    public UUID getIdByName(String name) {
+        return repository.getIdByName(name);
+    }
 }

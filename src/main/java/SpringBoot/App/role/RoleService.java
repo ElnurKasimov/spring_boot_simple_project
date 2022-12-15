@@ -16,4 +16,6 @@ public interface RoleService {
     public Role getById(UUID id);
 
     public Set<Role> getRolesFromNames(String[] rolesNames);
+
+    public UUID getIdByName(String name);
 }

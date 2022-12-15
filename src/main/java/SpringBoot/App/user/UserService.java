@@ -14,4 +14,6 @@ public interface UserService {
     public User save(UserDto userDto);
 
     public UserDto deleteById(UUID id);
+
+   // public void saveRoleRelations (User user);
 }

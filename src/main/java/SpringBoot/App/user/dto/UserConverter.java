@@ -10,6 +10,7 @@ public class UserConverter {
         result.setLastName(user.getLastName());
         result.setFirstName(user.getFirstName());
         result.setEmail(user.getEmail());
+        result.setPassword(user.getPassword());
         result.setRoles(user.getRoles());
         return result;
     }
@@ -20,6 +21,7 @@ public class UserConverter {
         result.setLastName(userDto.getLastName());
         result.setFirstName(userDto.getFirstName());
         result.setEmail(userDto.getEmail());
+        result.setPassword(userDto.getPassword());
         result.setRoles(userDto.getRoles());
         return result;
     }

@@ -32,19 +32,8 @@ public class AuthService {
     }
 
     public void save(String lastName, String firstName, String email, String password) {
-//        User user = new User();
-//        user.setId(UUID.randomUUID());
-//        user.setLastName(lastName));
-//        user.setFirstName(firstName);
-//        user.setEmail(email);
-//        user.setPassword(encoder.encode(password));
-//        return user;
-
         UUID newUserId =  UUID.randomUUID();
-        System.out.println("newUserId = " + newUserId);
-
         UUID roleId = findByName("USER").get(0).getId();
-        System.out.println("roleId = " + roleId);
 
         jdbcTemplate.update(
                 "INSERT INTO \"user\"  (id, last_name, first_name, email, password)  VALUES (:id, :lastName, :firstName, :email, :password)",
@@ -63,13 +52,10 @@ public class AuthService {
     }
 
     public List<Role> findByName(String name) {
-        List<Role> result = jdbcTemplate.query(
+        return jdbcTemplate.query(
                 "SELECT * FROM role WHERE name = :name",
                 Map.of("name", name),
                 new RoleRowMapper());
-        System.out.println("result.get(0) = " + result.get(0));
-        return result;
-
     }
 
     private static class RoleRowMapper implements RowMapper<Role> {
@@ -77,11 +63,9 @@ public class AuthService {
         public Role mapRow(ResultSet rs, int rowNum) throws SQLException {
             String name = rs.getString("name");
             UUID id = UUID.fromString(rs.getString("id"));
-
             Role role = new Role();
             role.setName(name);
             role.setId(id);
-
             return role;
         }
     }

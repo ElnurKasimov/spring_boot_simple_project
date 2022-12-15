@@ -49,4 +49,9 @@ public class InMemoryUserService implements UserService {
     public UserDto deleteById(UUID id) {
         return UserConverter.from(users.remove(id));
     }
+
+//    @Override
+//    public void saveRoleRelations(User user) {
+//
+//    }
 }

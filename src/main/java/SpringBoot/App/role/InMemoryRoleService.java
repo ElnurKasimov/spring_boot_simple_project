@@ -44,4 +44,9 @@ public class InMemoryRoleService implements RoleService{
         return roles;
     }
 
+    @Override
+    public UUID getIdByName(String name) {
+        return null;
+    }
+
 }
