@@ -1,5 +1,6 @@
 package SpringBoot.App.sequrity;
 
+import SpringBoot.App.role.Role;
 import SpringBoot.App.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.RowMapper;
@@ -55,6 +56,10 @@ public class AuthService {
 //        return user;
 
         UUID newUserId =  UUID.randomUUID();
+        UUID roleId = findIdByName("USER").get(0).getId();
+
+        System.out.println("newUserId = " + newUserId);
+        System.out.println("roleId = " + roleId);
 
         jdbcTemplate.update(
                 "INSERT INTO \"user\"  (id, last_name, first_name, email, password)  VALUES (:id, :lastName, :firstName, :email, :password)",
@@ -64,11 +69,34 @@ public class AuthService {
                         "email", email,
                         "password", encoder.encode("password")
                 )
-
-
-
+        );
+        jdbcTemplate.update(
+                "INSERT INTO role_user (role_id, user_id)  VALUES (:role_id, :user_id)",
+                Map.of("role_id", roleId, "lastName", newUserId)
         );
     }
 
+    public List<Role> findIdByName(String name) {
+
+        return jdbcTemplate.query(
+                "SELECT * FROM role WHERE name = :name",
+                Map.of("query", name),
+                new RoleRowMapper()
+        );
+    }
+
+    private static class RoleRowMapper implements RowMapper<Role> {
+        @Override
+        public Role mapRow(ResultSet rs, int rowNum) throws SQLException {
+            String name = rs.getString("name");
+            UUID id = UUID.fromString(rs.getString("id"));
+
+            Role role = new Role();
+            role.setName(name);
+            role.setId(id);
+
+            return role;
+        }
+    }
 
 }
