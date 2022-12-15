@@ -13,16 +13,6 @@ public class AppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AppApplication.class, args);
-
-//		BCryptPasswordEncoder coder = new BCryptPasswordEncoder();
-//		String ivan = coder.encode("ivan");
-//		String petr = coder.encode("petr");
-//		String test = coder.encode("test");
-//		String boss = coder.encode("boss");
-//		System.out.println("ivan = " + ivan);
-//		System.out.println("petr = " + petr);
-//		System.out.println("test = " + test);
-//		System.out.println("boss = " + boss);
 	}
 
 	@Bean

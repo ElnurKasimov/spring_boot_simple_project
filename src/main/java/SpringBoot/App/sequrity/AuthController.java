@@ -28,17 +28,6 @@ import java.util.stream.Collectors;
         return "/homepage";
     }
 
-//    @GetMapping("/auth")
-//    public ModelAndView auth() {
-//            if(authService.isRegistered()) { return new ModelAndView("security/login-error");}
-//            else { return new ModelAndView("security/registration");}
-//    }
-//
-//    @GetMapping("/login-error")
-//    public String loginError() {
-//        return "/security/login-error";
-//    }
-
     @GetMapping("/registration")
     public String getRegistration() {
         return "/security/registration";

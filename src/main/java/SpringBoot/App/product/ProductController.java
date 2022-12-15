@@ -96,11 +96,8 @@ public class ProductController {
     @PostMapping("/delete")
     public String postDeleteById(@RequestParam ("id") String id) {
         if(productService.getById(UUID.fromString(id)) != null) {
-            productService.deleteById(UUID.fromString(id));
-            return "redirect:/product/all";}
-        else {return "redirect:/error";}
+            productService.deleteById(UUID.fromString(id));}
+        return "redirect:/product/all";
     }
-//    @GetMapping("/error")
-//    public String getErrorPage () {return "redirect:/error";}
 
 }

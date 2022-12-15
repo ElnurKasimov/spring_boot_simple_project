@@ -5,7 +5,6 @@ import SpringBoot.App.user.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -108,10 +107,6 @@ public class UserController {
         return "redirect:/user/all";
     }
 
-//    @GetMapping("/error")
-//    public String getErrorPage () {
-//        return "/error";
-//    }
 
     @Secured("ROLE_ADMIN")
     @GetMapping("/delete")
@@ -124,8 +119,8 @@ public class UserController {
     public String postDeleteUserById(@RequestParam ("id") String id) {
         if(userService.getById(UUID.fromString(id)) != null) {
             userService.deleteById(UUID.fromString(id));
-            return "redirect:/user/all";}
-        else {return "redirect:/error";}
+        }
+            return "redirect:/user/all";
     }
 
 }

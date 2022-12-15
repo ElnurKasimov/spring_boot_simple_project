@@ -62,11 +62,6 @@ public class RoleController {
         return "redirect:/role/all";
     }
 
-//    @GetMapping("/error")
-//    public String getErrorPage () {
-//        return "/error";
-//    }
-
     @Secured("ROLE_ADMIN")
     @GetMapping("/delete")
     public String getDeleteRoleById() {
@@ -77,9 +72,8 @@ public class RoleController {
     @PostMapping("/delete")
     public String postDeleteRoleById(@RequestParam ("id") String id) {
         if(roleService.getById(UUID.fromString(id)) != null) {
-            roleService.deleteById(UUID.fromString(id));
-            return "redirect:/role/all";}
-        else {return "redirect:/error";}
+            roleService.deleteById(UUID.fromString(id));}
+            return "redirect:/role/all";
     }
 
 }

@@ -28,9 +28,6 @@ public class WebSecurityConfig {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http.csrf().disable()
                     .authorizeHttpRequests()
-//                    .antMatchers("/login/**").permitAll()
-//                    .antMatchers("/registration").permitAll()
-//                    .antMatchers("/security/**").permitAll()
                     .anyRequest()
                     .authenticated()
                     .and()
@@ -40,7 +37,6 @@ public class WebSecurityConfig {
                     .loginProcessingUrl("/login")
                     .defaultSuccessUrl("/homepage", true)
                     .failureUrl("/registration")
-                    //.failureHandler(authenticationFailureHandler())
                     .and()
                     .logout()
                     .permitAll()
@@ -53,27 +49,5 @@ public class WebSecurityConfig {
     public UserDetailsService userDetailsService() {
         return new MyUserJdbcDetailsService(jdbcTemplate);
     }
-
-    @Bean
-    public AuthenticationFailureHandler authenticationFailureHandler() {
-        return new MyAuthenticationFailureHandler();
-    }
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("user")
-//                        .password("user")
-//                        .roles("USER")
-//                        .build();
-//        UserDetails admin =
-//                User.withDefaultPasswordEncoder()
-//                        .username("admin")
-//                        .password("admin")
-//                        .roles("ADMIN")
-//                        .build();
-//        return new InMemoryUserDetailsManager(user, admin);
-//    }
 
 }

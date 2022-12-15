@@ -43,21 +43,14 @@ public class MyUserJdbcDetailsService implements UserDetailsService {
                 roles.forEach(System.out::println);
                 return roles;
             }
-
             @Override
             public String getPassword() {
-                String password = userDataLines.get(0).getPassword();
-                System.out.println("password = " + password);
-                return password;
+                return userDataLines.get(0).getPassword();
             }
-
             @Override
             public String getUsername() {
-                String email1 = userDataLines.get(0).getEmail();
-                System.out.println("email = " + email);
-                return email;
+                return userDataLines.get(0).getEmail();
             }
-
             @Override
             public boolean isAccountNonExpired() {
                 return true;
@@ -81,7 +74,6 @@ public class MyUserJdbcDetailsService implements UserDetailsService {
 
     }
 
-
     private static class RoleUserRowMapper implements RowMapper<RoleUser> {
         @Override
         public RoleUser mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -90,7 +82,6 @@ public class MyUserJdbcDetailsService implements UserDetailsService {
             String email = rs.getString("email");
             String password = rs.getString("password");
             String role = rs.getString("name");
-
             RoleUser roleUser = new RoleUser();
             roleUser.setLastName(lastName);
             roleUser.setFirstName(firstName);

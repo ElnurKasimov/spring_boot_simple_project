@@ -57,7 +57,6 @@ public class ManufactureController {
     @Secured("ROLE_ADMIN")
     @GetMapping("/add")
     public String getAddManufacture() {
-        //ModelAndView result = new ModelAndView("manufacture/add");
         return "/manufacture/add";
     }
     @Secured("ROLE_ADMIN")
@@ -71,7 +70,6 @@ public class ManufactureController {
     @Secured("ROLE_ADMIN")
     @GetMapping("/update")
     public String getUpdateManufacture() {
-        //ModelAndView result = new ModelAndView("manufacture/add");
         return "/manufacture/update";
     }
     @Secured("ROLE_ADMIN")
@@ -85,11 +83,6 @@ public class ManufactureController {
         return "redirect:/manufacture/all";
     }
 
-//    @GetMapping("/error")
-//    public String getErrorPage () {
-//        return "redirect:/error";
-//    }
-
     @Secured("ROLE_ADMIN")
     @GetMapping("/delete")
     public String getDeleteManufacture() {
@@ -101,9 +94,8 @@ public class ManufactureController {
     public String postDeleteById(@RequestParam ("id") String id) {
         if(manufactureService.getById(UUID.fromString(id)) != null) {
             productService.deleteManufactureProducts(UUID.fromString(id));
-            manufactureService.deleteById(UUID.fromString(id));
-            return "redirect:/manufacture/all";}
-        else {return "redirect:/error";}
+            manufactureService.deleteById(UUID.fromString(id));}
+        return "redirect:/manufacture/all";
     }
 
 }

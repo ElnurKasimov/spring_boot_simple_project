@@ -50,8 +50,4 @@ public class InMemoryUserService implements UserService {
         return UserConverter.from(users.remove(id));
     }
 
-//    @Override
-//    public void saveRoleRelations(User user) {
-//
-//    }
 }

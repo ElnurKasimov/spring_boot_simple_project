@@ -37,15 +37,11 @@ public class InMemoryProductService implements ProductService {
 
     @Override
     public synchronized Product save(ProductDto productDto) {
-
         if (productDto.getId() == null) {
             productDto.setId(UUID.randomUUID());
         }
-
         products.put(productDto.getId(), ProductConverter.to(productDto));
-
         return ProductConverter.to(productDto);
-
     }
 
     @Override
