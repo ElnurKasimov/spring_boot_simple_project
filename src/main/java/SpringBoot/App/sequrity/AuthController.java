@@ -20,17 +20,17 @@ import java.util.stream.Collectors;
 
         @GetMapping("/login")
         public String login() {
-            return "/security/login";
+            return "security/login";
         }
 
     @GetMapping("/homepage")
     public String homepage() {
-        return "/homepage";
+        return "homepage";
     }
 
     @GetMapping("/registration")
     public String getRegistration() {
-        return "/security/registration";
+        return "security/registration";
     }
 
     @PostMapping("/registration")

@@ -34,7 +34,7 @@ public class UserController {
     @Secured("ROLE_ADMIN")
     @GetMapping("/id")
     public String getUserById() {
-        return "/user/getById";
+        return "user/getById";
     }
 
     @Secured("ROLE_ADMIN")
@@ -48,7 +48,7 @@ public class UserController {
     @Secured("ROLE_ADMIN")
     @GetMapping("/name")
     public String getManufactureByName() {
-        return "/user/getByName";
+        return "user/getByName";
     }
 
     @Secured("ROLE_ADMIN")
@@ -111,7 +111,7 @@ public class UserController {
     @Secured("ROLE_ADMIN")
     @GetMapping("/delete")
     public String getDeleteUserById() {
-        return "/user/delete";
+        return "user/delete";
     }
 
     @Secured("ROLE_ADMIN")

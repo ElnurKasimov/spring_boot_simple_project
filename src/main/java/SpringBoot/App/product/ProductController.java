@@ -29,7 +29,7 @@ public class ProductController {
 
     @GetMapping("/id")
     public String getProductById() {
-        return "/product/getById";
+        return "product/getById";
     }
 
     @PostMapping("/id")
@@ -41,7 +41,7 @@ public class ProductController {
 
     @GetMapping("/name")
     public String getProductByName() {
-        return "/product/getByName";
+        return "product/getByName";
     }
 
     @PostMapping("/name")
@@ -90,7 +90,7 @@ public class ProductController {
 
     @Secured("ROLE_ADMIN")
     @GetMapping("/delete")
-    public String getDeleteProduct() {return "/product/delete";
+    public String getDeleteProduct() {return "product/delete";
     }
     @Secured("ROLE_ADMIN")
     @PostMapping("/delete")

@@ -30,7 +30,7 @@ public class ManufactureController {
 
     @GetMapping("/id")
     public String getManufactureById() {
-        return "/manufacture/getById";
+        return "manufacture/getById";
     }
 
     @PostMapping("/id")
@@ -43,7 +43,7 @@ public class ManufactureController {
 
     @GetMapping("/name")
     public String getManufactureByName() {
-        return "/manufacture/getByName";
+        return "manufacture/getByName";
     }
 
     @PostMapping("/name")
@@ -57,7 +57,7 @@ public class ManufactureController {
     @Secured("ROLE_ADMIN")
     @GetMapping("/add")
     public String getAddManufacture() {
-        return "/manufacture/add";
+        return "manufacture/add";
     }
     @Secured("ROLE_ADMIN")
     @PostMapping("/add")
@@ -70,7 +70,7 @@ public class ManufactureController {
     @Secured("ROLE_ADMIN")
     @GetMapping("/update")
     public String getUpdateManufacture() {
-        return "/manufacture/update";
+        return "manufacture/update";
     }
     @Secured("ROLE_ADMIN")
     @PostMapping("/update")
@@ -86,7 +86,7 @@ public class ManufactureController {
     @Secured("ROLE_ADMIN")
     @GetMapping("/delete")
     public String getDeleteManufacture() {
-        return "/manufacture/delete";
+        return "manufacture/delete";
     }
 
     @Secured("ROLE_ADMIN")

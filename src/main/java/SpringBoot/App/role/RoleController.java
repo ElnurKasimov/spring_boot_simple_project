@@ -29,7 +29,7 @@ public class RoleController {
 
     @Secured("ROLE_ADMIN")
     @GetMapping("/id")
-    public String getRoleById() {return "/role/getById";}
+    public String getRoleById() {return "role/getById";}
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/id")
@@ -41,7 +41,7 @@ public class RoleController {
 
     @Secured("ROLE_ADMIN")
     @GetMapping("/name")
-    public String getRoleByName() {return "/role/getByName";}
+    public String getRoleByName() {return "role/getByName";}
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/name")
@@ -52,7 +52,7 @@ public class RoleController {
     }
     @Secured("ROLE_ADMIN")
     @GetMapping("/add")
-    public String getAddRole() {return "/role/add";}
+    public String getAddRole() {return "role/add";}
 
     @Secured("ROLE_ADMIN")
     @PostMapping("/add")
@@ -65,7 +65,7 @@ public class RoleController {
     @Secured("ROLE_ADMIN")
     @GetMapping("/delete")
     public String getDeleteRoleById() {
-        return "/role/delete";
+        return "role/delete";
     }
 
     @Secured("ROLE_ADMIN")
