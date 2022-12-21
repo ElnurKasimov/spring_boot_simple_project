@@ -38,29 +38,25 @@ To deploy the project you will need to do the following steps:
 2.	Create a PostgreSQL database (remember its name - it will necessary  later). The project will create the database structure automatically using ThymeLeaf migrations.
 3.	In the application.properties file make the following changes.
 
- server.port=(your port)
-    
-  Where (your port) can be 8080, 5000 or another. But be sure that You'll enter into project from Your browser just from this port. 
+server.port=(your port)
+
+Where (your port) can be 8080, 5000 or another. But be sure that You'll enter into project from Your browser just from this port. 
   
-   server.port=(your port)
+spring.datasource.url=jdbc:postgresql://localhost:(your port)/(your database)
     
-  Where (your port) can be 8080, 5000 or another. But be sure that You'll enter into project from Your browser just from this port. 
-  
-    spring.datasource.url=jdbc:postgresql://localhost:(your port)/(your database)
-    
-  Where:
-- (your port) - the port from which You connect with Your PostgreSQL database (created in the step#2), as usual 5432;
-- (your database) - name of Your database created in the step#2.
+Where:
+ (your port) - the port from which You connect with Your PostgreSQL database (created in the step#2), as usual 5432;
+ (your database) - name of Your database created in the step#2.
 
-    spring.datasource.username=(usernmame)
+spring.datasource.username=(usernmame)
     
-  Where (usernmame) is the username which You use to get access into PostgreSQL, as usual postgres.
+Where (usernmame) is the username which You use to get access into PostgreSQL, as usual postgres.
 
-    spring.datasource.password=(password)
+spring.datasource.password=(password)
     
-  Where (password) the password which You use to get access into PostgreSQL
+Where (password) the password which You use to get access into PostgreSQL
 
-    spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.hibernate.ddl-auto=validate
     
 This line don't change.
 
@@ -75,4 +71,4 @@ Important: the order of the queries is important - first populate_role.sql, then
 
 6.	In any browser go to http://localhost:(YourPort)
 
- Where (yourPort) is the port which You pointed in the first row of application.propertises (see step#3).
+ Where (YourPort) is the port which You pointed in the first row of application.propertises (see step#3).
