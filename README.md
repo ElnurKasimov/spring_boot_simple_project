@@ -30,23 +30,25 @@ In this case you will be able to reassign the roles of existing users or add new
 
 Software requirements:
 - Windows 10 or later,
-- PostgreSQL 11 or later.
+- PostgreSQL 11 or later,
+- Java 17 or later.
 To deploy the project you will need to do the following steps:
 1.	Clone the project from this repository to your computer.
 2.	Create a PostgreSQL database (remember its name - it will necessary  later). The project will create the database structure automatically using ThymeLeaf migrations.
 3.	In the application.properties file make the following changes:
     - server.port=(your port)
-     Where (your port) can be 8080, 5000 or another. But be sure that You'll enter into project from Your browser just from this port. 
+  Where (your port) can be 8080, 5000 or another. But be sure that You'll enter into project from Your browser just from this port. 
+  
     - spring.datasource.url=jdbc:postgresql://localhost:(your port)/(your database)
-	Where:
-              (your port) - the port from which You connect with Your PostgreSQL database (created in the step#2), as usual 5432;
-              (your database) - name of Your database created in the step#2.
+  Where:
+       (your port) - the port from which You connect with Your PostgreSQL database (created in the step#2), as usual 5432;
+       (your database) - name of Your database created in the step#2.
 
     - spring.datasource.username=(usernmame)
-	   Where (usernmame) is the username which You use to get access into PostgreSQL, as usual postgres.
+  Where (usernmame) is the username which You use to get access into PostgreSQL, as usual postgres.
 
     - spring.datasource.password=<password>
-           Where (password) the password which You use to get access into PostgreSQL
+  Where (password) the password which You use to get access into PostgreSQL
 
     - spring.jpa.hibernate.ddl-auto=validate
 This line don't change.
