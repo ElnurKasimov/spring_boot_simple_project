@@ -42,21 +42,25 @@ To deploy the project you will need to do the following steps:
     
   Where (your port) can be 8080, 5000 or another. But be sure that You'll enter into project from Your browser just from this port. 
   
- spring.datasource.url=jdbc:postgresql://localhost:(your port)/(your database)
+   server.port=(your port)
+    
+  Where (your port) can be 8080, 5000 or another. But be sure that You'll enter into project from Your browser just from this port. 
+  
+    spring.datasource.url=jdbc:postgresql://localhost:(your port)/(your database)
     
   Where:
-    (your port) - the port from which You connect with Your PostgreSQL database (created in the step#2), as usual 5432;
-    (your database) - name of Your database created in the step#2.
+- (your port) - the port from which You connect with Your PostgreSQL database (created in the step#2), as usual 5432;
+- (your database) - name of Your database created in the step#2.
 
- spring.datasource.username=(usernmame)
+    spring.datasource.username=(usernmame)
     
   Where (usernmame) is the username which You use to get access into PostgreSQL, as usual postgres.
 
- spring.datasource.password=(password)
+    spring.datasource.password=(password)
     
   Where (password) the password which You use to get access into PostgreSQL
 
- spring.jpa.hibernate.ddl-auto=validate
+    spring.jpa.hibernate.ddl-auto=validate
     
 This line don't change.
 
