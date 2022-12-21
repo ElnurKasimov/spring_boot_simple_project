@@ -45,10 +45,8 @@ To deploy the project you will need to do the following steps:
     spring.datasource.url=jdbc:postgresql://localhost:(your port)/(your database)
     
   Where:
-  
-       (your port) - the port from which You connect with Your PostgreSQL database (created in the step#2), as usual 5432;
-       
-       (your database) - name of Your database created in the step#2.
+      (your port) - the port from which You connect with Your PostgreSQL database (created in the step#2), as usual 5432;
+      (your database) - name of Your database created in the step#2.
 
     spring.datasource.username=(usernmame)
     
