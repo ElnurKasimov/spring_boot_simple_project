@@ -14,7 +14,7 @@ Ordinary users are provided with the following capabilities:
 
 The administrator, in addition to these features, is given the following capabilities:
 - add, edit and delete products and manufacturers; 
-- Obtain a list of all users, search by name or ID number, the ability to add, edit and delete users; 
+- obtain a list of all users, search by name or ID number, the ability to add, edit and delete users; 
 - get the list of all user roles, search by name or ID number, the ability to add, edit and delete roles.
 
 ## **How to use the project**
