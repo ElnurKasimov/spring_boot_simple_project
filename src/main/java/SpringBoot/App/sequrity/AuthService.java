@@ -24,19 +24,9 @@ public class AuthService {
     private final NamedParameterJdbcTemplate jdbcTemplate;
     private  final PasswordEncoder encoder;
 
-//    public  boolean isRegistered () {
-//        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-//        List<User> users = jdbcTemplate.query(
-//                "SELECT *  FROM \"user\"  WHERE email = :email",
-//                Map.of("email", username),
-//                new UserRowMapper()
-//        );
-//        return !users.isEmpty();
-//    }
-
     public void save(String lastName, String firstName, String email, String password) {
         UUID newUserId =  UUID.randomUUID();
-        UUID roleId = findByName("USER").get(0).getId();
+        UUID roleId = findByName("ROLE_USER").get(0).getId();
         jdbcTemplate.update(
                 "INSERT INTO \"user\"  (id, last_name, first_name, email, password)  VALUES (:id, :lastName, :firstName, :email, :password)",
                 Map.of("id", newUserId,
@@ -70,50 +60,5 @@ public class AuthService {
             return role;
         }
     }
-
-//    private static class UserRowMapper implements RowMapper<User> {
-//        @Override
-//        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-//            User user = new User();
-//            user.setId(UUID.fromString(rs.getString("id")));
-//            user.setLastName(rs.getString("last_name"));
-//            user.setFirstName(rs.getString("first_name"));
-//            user.setEmail(rs.getString("email"));
-//            user.setPassword(rs.getString("password"));
-//            return user;
-//        }
-//    }
-
-//
-//    public SecurityResponse getSecurityResponse() {
-//        Set<String> roles = getUserRoles();
-//
-//        roles.forEach(System.out::println);
-//
-//        if (roles.contains("ADMIN")) {
-//            return new SecurityResponse("You're admin! Cool!");
-//        }
-//
-//        if (roles.contains("USER")) {
-//            return new SecurityResponse("You're user! That's okay!");
-//        }
-//
-//        if (roles.contains("ANONYMOUS")) {
-//            return new SecurityResponse("You're anonymous.");
-//        }
-//
-//        return new SecurityResponse("Who are you? who knows.");
-//    }
-
-//    private Set<String> getUserRoles() {
-//        return SecurityContextHolder
-//                .getContext()
-//                .getAuthentication()
-//                .getAuthorities()
-//                .stream()
-//                .map(GrantedAuthority::getAuthority)
-//                .map(it -> it.replace("ROLE_", ""))
-//                .collect(Collectors.toSet());
-//    }
 
 }
