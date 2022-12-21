@@ -36,7 +36,7 @@ Software requirements:
 To deploy the project you will need to do the following steps:
 1.	Clone the project from this repository to your computer.
 2.	Create a PostgreSQL database (remember its name - it will necessary  later). The project will create the database structure automatically using ThymeLeaf migrations.
-3.	In the application.properties file make the following changes.
+3.	In the application.properties file make the following changes:
 
 _server.port=(your port)_  
 Where (your port) can be 8080, 5000 or another. But be sure that You'll enter into project from Your browser just from this port. 
@@ -46,7 +46,7 @@ Where:
 (your port) - the port from which You connect with Your PostgreSQL database created in the step#2 (as usual 5432);  
 (your database) - name of Your database created in the step#2.
 
-_spring.datasource.username=(usernmame)_  
+_spring.datasource.username=(username)_  
 Where (usernmame) is the username which You use to get access into PostgreSQL (as usual 'postgres').
 
 _spring.datasource.password=(password)_  
