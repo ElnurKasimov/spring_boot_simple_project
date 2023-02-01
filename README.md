@@ -29,7 +29,6 @@ In this case you will be able to reassign the roles of existing users or add new
 ## **How to deploy this project on a local computer**
 
 Software requirements:
-- Windows 10 or later,
 - PostgreSQL 11 or later,
 - Java 17 or later.
 
